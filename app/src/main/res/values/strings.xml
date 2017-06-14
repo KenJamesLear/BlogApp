@@ -2,12 +2,25 @@
     <string name="app_name">BlogApp</string>
     <string name="action_settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <!-- StartMenu -->
     <string name="start_menu_header">Welcome to My Blogs</string>
     <string name="start_menu_login_button">Login</string>
     <string name="start_menu_register_button">Register</string>
 
+    <!-- Register -->
+    <string name="regsiter_menu_header">Register a new Blogger</string>
+    <string name="register_menu_first_name_header">Enter First Name:</string>
+    <string name="register_menu_first_name_default">First Name</string>
+    <string name="register_menu_last_name_header">Enter Last Name:</string>
+    <string name="register_menu_last_name_default">Last Name</string>
+    <string name="register_menu_email_header">Enter Email:</string>
+    <string name="register_menu_email_default">Email</string>
+    <string name="register_menu_password_header">Enter Password:</string>
+    <string name="register_menu_password_default">password</string>
+    <string name="register_menu_enter_button">Register User</string>
+
     <!-- General -->
     <string name="exit_button">Exit</string>
+
+
 </resources>

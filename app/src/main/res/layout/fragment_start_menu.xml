@@ -12,6 +12,7 @@
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
+        android:id="@+id/startMenuHeaderTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
@@ -19,13 +20,13 @@
         android:text="@string/start_menu_header" />
 
     <Button
-        android:id="@+id/registerButton"
+        android:id="@+id/startRegisterButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/start_menu_register_button" />
 
     <Button
-        android:id="@+id/LoginButton"
+        android:id="@+id/startLoginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/start_menu_login_button" />
