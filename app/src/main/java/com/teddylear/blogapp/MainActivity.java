@@ -1,18 +1,16 @@
 package com.teddylear.blogapp;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.teddylear.blogapp.Fragments.RegisterFragment;
 import com.teddylear.blogapp.Fragments.StartMenuFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements StartMenuFragment.OnExitListener,
+        StartMenuFragment.OnRegisterListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +46,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void startRegisterFragment(){
+        RegisterFragment registerFragment = new RegisterFragment();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frame_container, registerFragment);
+        ft.addToBackStack("REGISTER");
+        ft.commit();
+    }
+
+    public void end(){
+        finish();
     }
 
     @Override

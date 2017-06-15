@@ -74,10 +74,11 @@
         android:text = "@string/register_menu_password_default"/>
 
     <Button
-        android:id="@+id/EnterRegisterButton"
+        android:id="@+id/enterRegisterButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/register_menu_enter_button" />
+
 
 
 </LinearLayout>
