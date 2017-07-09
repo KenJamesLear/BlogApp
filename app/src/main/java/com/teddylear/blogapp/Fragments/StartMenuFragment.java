@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.teddylear.blogapp.R;
 
 public class StartMenuFragment extends Fragment implements View.OnClickListener {
+    private OnExitListener mExitListener;
+    private OnRegisterListener mRegisterListener;
 
     public interface OnExitListener {
         void end();
@@ -21,9 +23,6 @@ public class StartMenuFragment extends Fragment implements View.OnClickListener 
     public interface OnRegisterListener {
         void startRegisterFragment();
     }
-
-    private OnExitListener mExitListener;
-    private OnRegisterListener mRegisterListener;
 
     public StartMenuFragment() {
         // Required empty public constructor

@@ -4,7 +4,7 @@ package com.teddylear.blogapp.Objects;
  * Created by ken on 6/14/2017.
  */
 
-public class NewUser {
+public class NewUserHelper {
     private String firstName;
     private String lastName;
     private String email;
@@ -41,5 +41,5 @@ public class NewUser {
         this.password = password;
     }
 
-    public NewUser(){}
+    public NewUserHelper(){}
 }

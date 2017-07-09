@@ -6,11 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.teddylear.blogapp.AsyncTasks.RegisterAsyncTask;
 import com.teddylear.blogapp.Fragments.RegisterFragment;
 import com.teddylear.blogapp.Fragments.StartMenuFragment;
+import com.teddylear.blogapp.Objects.NewUserHelper;
+import com.teddylear.blogapp.Objects.User;
 
 public class MainActivity extends AppCompatActivity implements StartMenuFragment.OnExitListener,
-        StartMenuFragment.OnRegisterListener {
+        StartMenuFragment.OnRegisterListener,
+        RegisterFragment.OnNewUserListener{
+
+    private RegisterAsyncTask mRegisterAsyncTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +68,23 @@ public class MainActivity extends AppCompatActivity implements StartMenuFragment
         finish();
     }
 
+    public void registerUser(NewUserHelper newUserHelper){
+        RegisterAsyncTask registerAsyncTask = new RegisterAsyncTask(this, newUserHelper);
+        mRegisterAsyncTask = registerAsyncTask;
+        registerAsyncTask.execute();
+    }
+
+    public void afterRegisterUser(User user){
+        //TODO update with what you want to do here, two options with either success or not
+        if (user == null){
+            Toast.makeText(this, "Error with registering user" , Toast.LENGTH_SHORT).show();
+        }
+    }
     @Override
     public void onDestroy(){
         super.onDestroy();
+        if (mRegisterAsyncTask != null) mRegisterAsyncTask.cancel(true);
     }
+
+
 }

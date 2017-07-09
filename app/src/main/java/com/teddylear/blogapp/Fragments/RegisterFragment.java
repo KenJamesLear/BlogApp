@@ -1,17 +1,17 @@
 package com.teddylear.blogapp.Fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.teddylear.blogapp.Objects.NewUser;
+import android.util.Log;
+import com.teddylear.blogapp.Objects.NewUserHelper;
 import com.teddylear.blogapp.R;
 
 
@@ -21,11 +21,20 @@ public class RegisterFragment extends Fragment {
     private EditText mLastNameEditText;
     private EditText mEmailEditText;
     private EditText mPasswordEditText;
-
-
+    private OnNewUserListener mOnNewUserListener;
 
     public RegisterFragment() {
         // Required empty public constructor
+    }
+
+    public interface OnNewUserListener {
+        void registerUser(NewUserHelper newUserHelper);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mOnNewUserListener = (OnNewUserListener) context;
     }
 
     @Override
@@ -55,13 +64,14 @@ public class RegisterFragment extends Fragment {
     }
 
     private void registerUser(){
-        NewUser newUser = new NewUser();
+        //Toast.makeText(getActivity().getBaseContext(), "Register Button" , Toast.LENGTH_SHORT).show();
+        NewUserHelper newUser = new NewUserHelper();
         newUser = makeNewUser();
-
+        mOnNewUserListener.registerUser(newUser);
     }
 
-    private NewUser makeNewUser(){
-        NewUser newUser = new NewUser();
+    private NewUserHelper makeNewUser(){
+        NewUserHelper newUser = new NewUserHelper();
         String firstName = mFirstNameEditText.getText().toString();
         //Log.d("newUserTest", firstName);
         String lastName = mLastNameEditText.getText().toString();
