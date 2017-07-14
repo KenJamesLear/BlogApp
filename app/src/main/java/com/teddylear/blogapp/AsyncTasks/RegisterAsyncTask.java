@@ -2,6 +2,8 @@ package com.teddylear.blogapp.AsyncTasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.google.gson.Gson;
 import com.teddylear.blogapp.Fragments.RegisterFragment;
 import com.teddylear.blogapp.MainActivity;
 import com.teddylear.blogapp.Objects.NewUserHelper;
@@ -22,7 +24,7 @@ import java.net.URLEncoder;
  * Created by ken on 6/14/2017.
  */
 
-public class RegisterAsyncTask extends AsyncTask<NewUserHelper, Void, User> {
+public class RegisterAsyncTask extends AsyncTask<NewUserHelper, Void, Boolean> {
     private WeakReference<MainActivity> mWeakRefActivity;
     private NewUserHelper mNewUserHelper;
     private String mURL = "/registerNewUser.php";
@@ -33,8 +35,8 @@ public class RegisterAsyncTask extends AsyncTask<NewUserHelper, Void, User> {
     }
 
     @Override
-    protected User doInBackground (NewUserHelper... newUsers) {
-        User user = new User();
+    protected Boolean doInBackground (NewUserHelper... newUsers) {
+       Boolean result = false;
         try {
 
             URL object = new URL(mURL);
@@ -52,7 +54,6 @@ public class RegisterAsyncTask extends AsyncTask<NewUserHelper, Void, User> {
             newUser.put("email", mNewUserHelper.getEmail());
             newUser.put("password", mNewUserHelper.getPassword());
             Log.d("JSONOBJ", newUser.toString());
-            //String phpPost = URLEncoder.encode(newUser.toString(),"UTF-8");
             OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
             wr.write(newUser.toString());
             wr.flush();
@@ -73,24 +74,36 @@ public class RegisterAsyncTask extends AsyncTask<NewUserHelper, Void, User> {
                 //make log
                 Log.d("REG RETURN", sb.toString());
                 //TODO put result in User object
+                JSONObject returned = new JSONObject(sb.toString());
+                String returnedFirstName = returned.getString("firstname");
+                String returnedLastName = returned.getString("lastname");
+                Log.d("TEST1", returnedFirstName);
+                Log.d("TEST2", returnedLastName);
+                if (returnedFirstName.equals(mNewUserHelper.getFirstName()) &&
+                        returnedLastName.equals(mNewUserHelper.getLastName()))
+                {
+                   result = true;
+                }
+
+
             } else {
                 Log.d("REG RETURN", con.getResponseMessage());
             }
-            user = null;//TODO REMOVE LATER
+
             con.disconnect();
         }catch (IOException|JSONException e){
             Log.e("Register Error", e.toString());
-            user = null;
+
         }
-        return user;
+        return result;
     }
 
     @Override
-    protected void onPostExecute(User user){
-        super.onPostExecute(user);
+    protected void onPostExecute(Boolean result){
+        super.onPostExecute(result);
         MainActivity mainActivity = mWeakRefActivity.get();
         if (mainActivity ==  null) return;
-        mainActivity.afterRegisterUser(user);
+        mainActivity.afterRegisterUser(result);
     }
 
 }

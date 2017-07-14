@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.teddylear.blogapp.AsyncTasks.RegisterAsyncTask;
+import com.teddylear.blogapp.Fragments.LoginFragment;
 import com.teddylear.blogapp.Fragments.RegisterFragment;
 import com.teddylear.blogapp.Fragments.StartMenuFragment;
 import com.teddylear.blogapp.Objects.NewUserHelper;
@@ -74,11 +75,28 @@ public class MainActivity extends AppCompatActivity implements StartMenuFragment
         registerAsyncTask.execute();
     }
 
-    public void afterRegisterUser(User user){
+    public void afterRegisterUser(Boolean result){
         //TODO update with what you want to do here, two options with either success or not
-        if (user == null){
+        if (result == false){
             Toast.makeText(this, "Error with registering user" , Toast.LENGTH_SHORT).show();
         }
+        else {
+            Toast.makeText(this, "Account created", Toast.LENGTH_SHORT).show();
+            StartMenuFragment startMenuFragment = new StartMenuFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.frame_container, startMenuFragment);
+            ft.addToBackStack("STARTMENU");
+            ft.commit();
+
+        }
+    }
+
+    public void startLoginFragment(){
+        LoginFragment loginFragment = new LoginFragment();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frame_container, loginFragment);
+        ft.addToBackStack("LOGIN");
+        ft.commit();
     }
     @Override
     public void onDestroy(){
