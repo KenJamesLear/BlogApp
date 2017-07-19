@@ -60,7 +60,7 @@ public class LoginFragment extends Fragment {
         mView = view;
         return view;
     }
-    //TODO FINISH THIS METHOD
+
     private void prepLoginUser(){
         User user = new User();
         String email = mEmailEditText.getText().toString();

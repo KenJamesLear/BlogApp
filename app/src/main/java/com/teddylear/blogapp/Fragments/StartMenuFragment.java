@@ -13,8 +13,14 @@ import android.widget.Toast;
 import com.teddylear.blogapp.R;
 
 public class StartMenuFragment extends Fragment implements View.OnClickListener {
+
     private OnExitListener mExitListener;
     private OnRegisterListener mRegisterListener;
+    private OnLoginListener mLoginListener;
+
+    public StartMenuFragment() {
+        // Required empty public constructor
+    }
 
     public interface OnExitListener {
         void end();
@@ -24,15 +30,18 @@ public class StartMenuFragment extends Fragment implements View.OnClickListener 
         void startRegisterFragment();
     }
 
-    public StartMenuFragment() {
-        // Required empty public constructor
+    public interface OnLoginListener {
+        void startLoginFragment();
     }
+
+
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         mExitListener = (OnExitListener) context;
         mRegisterListener = (OnRegisterListener) context;
+        mLoginListener = (OnLoginListener) context;
     }
 
 
@@ -57,7 +66,8 @@ public class StartMenuFragment extends Fragment implements View.OnClickListener 
                 mRegisterListener.startRegisterFragment();
                 break;
             case R.id.startLoginButton:
-                Toast.makeText(getActivity().getBaseContext(), "Login", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity().getBaseContext(), "Login", Toast.LENGTH_SHORT).show();
+                mLoginListener.startLoginFragment();
                 break;
             case R.id.startMenuExitButton:
                 //Toast.makeText(getActivity().getBaseContext(), "Exit", Toast.LENGTH_SHORT).show();

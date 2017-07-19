@@ -17,7 +17,9 @@ import com.teddylear.blogapp.Objects.User;
 
 public class MainActivity extends AppCompatActivity implements StartMenuFragment.OnExitListener,
         StartMenuFragment.OnRegisterListener,
-        RegisterFragment.OnNewUserListener{
+        StartMenuFragment.OnLoginListener,
+        RegisterFragment.OnNewUserListener,
+        LoginFragment.OnLoginUserListener{
 
     private RegisterAsyncTask mRegisterAsyncTask;
 
@@ -98,6 +100,11 @@ public class MainActivity extends AppCompatActivity implements StartMenuFragment
         ft.addToBackStack("LOGIN");
         ft.commit();
     }
+
+    public void loginUser(User user){
+        //TODO finish this, make AsyncTask and call it
+    }
+
     @Override
     public void onDestroy(){
         super.onDestroy();
