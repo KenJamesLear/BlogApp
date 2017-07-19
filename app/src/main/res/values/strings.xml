@@ -19,6 +19,14 @@
     <string name="register_menu_password_default">password</string>
     <string name="register_menu_enter_button">Register User</string>
 
+    <!-- Login -->
+    <string name="login_menu_header">Enter Credentials</string>
+    <string name="login_menu_email_header">Enter Email:</string>
+    <string name="login_menu_email_default">Username</string>
+    <string name="login_menu_password_header">Enter Password</string>
+    <string name="login_menu_password_default">Password</string>
+    <string name="login_menu_login_button">Login</string>
+
     <!-- General -->
     <string name="exit_button">Exit</string>
 
