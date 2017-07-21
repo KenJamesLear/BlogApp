@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -77,8 +78,7 @@ public class MainActivity extends AppCompatActivity implements StartMenuFragment
         registerAsyncTask.execute();
     }
 
-    public void afterRegisterUser(Boolean result){
-        //TODO update with what you want to do here, two options with either success or not
+    public void afterRegisterUser(Boolean result) {
         if (result == false){
             Toast.makeText(this, "Error with registering user" , Toast.LENGTH_SHORT).show();
         }
@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements StartMenuFragment
 
     public void loginUser(User user){
         //TODO finish this, make AsyncTask and call it
+
     }
 
     @Override

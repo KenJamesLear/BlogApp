@@ -51,8 +51,8 @@ public class RegisterFragment extends Fragment {
         enterRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(getActivity().getBaseContext(), "Register new User" , Toast.LENGTH_SHORT).show();
-                registerUser();
+               //Toast.makeText(getActivity().getBaseContext(), "Register new User" , Toast.LENGTH_SHORT).show();
+               registerUser();
             }
         });
         mFirstNameEditText = (EditText) view.findViewById(R.id.firstNameEditText);

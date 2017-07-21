@@ -4,6 +4,7 @@ package com.teddylear.blogapp.Fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,7 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-        Button loginButton = (Button) view.findViewById(R.id.enterRegisterButton);
+        Button loginButton = (Button) view.findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -65,8 +66,10 @@ public class LoginFragment extends Fragment {
         User user = new User();
         String email = mEmailEditText.getText().toString();
         String password = mPasswordEditText.getText().toString();
+        //Log.d("EMAIL", email);
+        //Log.d("PASS", password);
         user.setEmail(email);
-        user.setPassword(email);
+        user.setPassword(password);
         mOnLoginUserListener.loginUser(user);
     }
 }
