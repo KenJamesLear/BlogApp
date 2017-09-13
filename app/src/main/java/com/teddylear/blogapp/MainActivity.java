@@ -14,6 +14,7 @@ import com.teddylear.blogapp.Fragments.LoginFragment;
 import com.teddylear.blogapp.Fragments.RegisterFragment;
 import com.teddylear.blogapp.Fragments.StartMenuFragment;
 import com.teddylear.blogapp.Objects.NewUserHelper;
+import com.teddylear.blogapp.Objects.URLLinks;
 import com.teddylear.blogapp.Objects.User;
 
 public class MainActivity extends AppCompatActivity implements StartMenuFragment.OnExitListener,
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements StartMenuFragment
         LoginFragment.OnLoginUserListener{
 
     private RegisterAsyncTask mRegisterAsyncTask;
+    private URLLinks mURLLinks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements StartMenuFragment
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.frame_container, startMenuFragment);
         ft.commit();
-
+        mURLLinks = new URLLinks();
     }
 
     @Override
@@ -73,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements StartMenuFragment
     }
 
     public void registerUser(NewUserHelper newUserHelper){
-        RegisterAsyncTask registerAsyncTask = new RegisterAsyncTask(this, newUserHelper);
+        RegisterAsyncTask registerAsyncTask = new RegisterAsyncTask(this, newUserHelper, mURLLinks);
         mRegisterAsyncTask = registerAsyncTask;
         registerAsyncTask.execute();
     }

@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.teddylear.blogapp.Fragments.RegisterFragment;
 import com.teddylear.blogapp.MainActivity;
 import com.teddylear.blogapp.Objects.NewUserHelper;
+import com.teddylear.blogapp.Objects.URLLinks;
 import com.teddylear.blogapp.Objects.User;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,11 +28,13 @@ import java.net.URLEncoder;
 public class RegisterAsyncTask extends AsyncTask<NewUserHelper, Void, Boolean> {
     private WeakReference<MainActivity> mWeakRefActivity;
     private NewUserHelper mNewUserHelper;
-    private String mURL = "/registerNewUser.php";
+    private String mURL;
 
-    public RegisterAsyncTask(MainActivity mainActivity, NewUserHelper newUserHelper){
+    public RegisterAsyncTask(MainActivity mainActivity, NewUserHelper newUserHelper,
+                             URLLinks links){
         this.mWeakRefActivity = new WeakReference<> (mainActivity);
         this.mNewUserHelper = newUserHelper;
+        this.mURL = links.getRegisterUserURL();
     }
 
     @Override
